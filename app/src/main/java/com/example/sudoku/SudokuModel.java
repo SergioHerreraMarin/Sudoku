@@ -6,10 +6,12 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.TableLayout;
 
+import java.util.Random;
+
 public class SudokuModel {
 
     private static int[][] sudokuData = new int[9][9];
-    CharSequence[] opciones = {"1","2","3","4","5","6","7","8","9"};
+    private CharSequence[] opciones = {"0","1","2","3","4","5","6","7","8","9"};
 
     public int[][] getSudokuData(){
         return sudokuData;
@@ -67,11 +69,24 @@ public class SudokuModel {
     }
 
     public boolean comprovaQuadrant(int x, int y){
-
         return true;
     }
 
     public void creaPartida(){
+
+        Random random = new Random();
+
+        for(int i = 0; i < sudokuData.length; i++){
+            for(int j = 0; j < sudokuData[i].length; j++){
+                sudokuData[i][j] = 0;
+            }
+        }
+
+        for(int i = 0; i < sudokuData.length; i++){
+            for(int j = 0; j < sudokuData[i].length; j++){
+                setVal(i, j, random.nextInt(9));
+            }
+        }
 
     }
 
