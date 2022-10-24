@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private static Spinner[][] spinnerArray = new Spinner[9][9];
     private TableLayout tableLayout;
     private SudokuModel model;
+    int init = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         createTable(model.getSudokuData());
         model.creaPartida();
         refrescaGUI();
+        init = 1;
     }
 
 
@@ -48,7 +50,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             for(int y = 0; y < data[x].length; y++){
                 Spinner spinner = new Spinner(this);
                 spinner.setBackground(null);
-                //spinner.setBackgroundColor(Color.LTGRAY);
+                spinner.setBackgroundColor(Color.LTGRAY);
+                spinner.setPadding(30,30,3,3);
                 ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(this,
                         android.R.layout.simple_spinner_item, model.getOpciones());
                 spinner.setAdapter(adapter);
@@ -65,8 +68,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        //model.setVal((int)adapterView.getTag(R.id.fila),(int)adapterView.getTag(R.id.col), (int)adapterView.getItemAtPosition(i));
-
+        if(init == 1){
+            //model.setVal((int)adapterView.getTag(R.id.fila),(int)adapterView.getTag(R.id.col), (int)adapterView.getItemAtPosition(i));
+        }
     }
 
     @Override

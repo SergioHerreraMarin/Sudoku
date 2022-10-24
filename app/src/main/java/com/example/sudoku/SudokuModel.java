@@ -26,46 +26,36 @@ public class SudokuModel {
     }
 
     public void setVal(int x, int y, int val){
-        if(comprovaFila(x,y) && comprovaColumna(x,y)){
+
+        Log.i("INFO", "Fila: " + comprovaFila(x,y, val) + ", Columna: " + comprovaColumna(x,y, val));
+        if(comprovaFila(x,y, val) && comprovaColumna(x,y, val)){
             sudokuData[x][y] = val;
+        }else{
+            sudokuData[x][y] = 0;
         }
-        Log.i("Incorrecto", "Incorrecto2");
+
     }
 
-    public boolean comprovaFila(int x, int y){
+    public boolean comprovaFila(int x, int y, int val){
 
-        boolean correcto = true;
-        int currentNum;
-
-        for(int i = 0; i < sudokuData.length; i++){
-            currentNum = getVal(i, y);
-            for(int j = 0; j < sudokuData.length; j++){
-                if(getVal(j, y) == currentNum){
-                    if(j != i){
-                        correcto = false;
-                    }
-                }
+        for (int i = 0; i < sudokuData[y].length; i++) {
+            if(sudokuData[x][i] == val){
+                return false;
             }
         }
-        return correcto;
+
+        return true;
     }
 
-    public boolean comprovaColumna(int x, int y){
+    public boolean comprovaColumna(int x, int y, int val){
 
-        boolean correcto = true;
-        int currentNum;
-
-        for(int i = 0; i < sudokuData.length; i++){
-            currentNum = getVal(x, i);
-            for(int j = 0; j < sudokuData.length; j++){
-                if(getVal(x, j) == currentNum){
-                    if(j != i){
-                        correcto = false;
-                    }
-                }
+        for (int i = 0; i < sudokuData[x].length; i++) {
+            if(sudokuData[i][y] == val){
+                return false;
             }
         }
-        return correcto;
+
+        return true;
     }
 
     public boolean comprovaQuadrant(int x, int y){
@@ -89,6 +79,5 @@ public class SudokuModel {
         }
 
     }
-
 
 }
