@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 spinner.setOnItemSelectedListener(this);
                 spinner.setTag(R.id.col, y);
                 spinner.setTag(R.id.fila, x);
+                spinner.setTag(R.id.bug, "bug init");
                 spinnerArray[x][y] = spinner;
                 row.addView(spinner);
             }
@@ -68,8 +69,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        if(init == 1){
+        if(adapterView.getTag(R.id.bug).equals("bug init")){
+            adapterView.setTag(R.id.bug, "no bug");
+        }else{
+            Log.i("Fila: " + adapterView.getTag(R.id.fila), "Columna: " + adapterView.getTag(R.id.col) + ", Valor: " + adapterView.getItemAtPosition(i));
             //model.setVal((int)adapterView.getTag(R.id.fila),(int)adapterView.getTag(R.id.col), (int)adapterView.getItemAtPosition(i));
+            //refrescaGUI();
         }
     }
 

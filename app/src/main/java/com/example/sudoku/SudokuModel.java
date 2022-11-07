@@ -33,7 +33,6 @@ public class SudokuModel {
         }else{
             sudokuData[x][y] = 0;
         }
-
     }
 
     public boolean comprovaFila(int x, int y, int val){
@@ -43,7 +42,6 @@ public class SudokuModel {
                 return false;
             }
         }
-
         return true;
     }
 
@@ -54,7 +52,6 @@ public class SudokuModel {
                 return false;
             }
         }
-
         return true;
     }
 
